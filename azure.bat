@@ -92,3 +92,6 @@ az vm run-command invoke  --command-id RunPowerShellScript --name win-vm -g my-r
 	
 # https://stackoverflow.com/questions/27713381/powershell-script-to-create-website-in-iis
 
+az vm show -d -g reousrceGroupName -n vmName --query publicIps -o tsv
+http://20.241.251.136/test-site/
+
