@@ -7,6 +7,11 @@ REM Move files
 REM https://engineerer.ch/2020/08/16/copy-large-files-to-an-azure-vm/
 REM Access VM 
 REM https://azurelessons.com/how-to-access-azure-vm/
+
+# Azure portal should be logged in from the Edge browser already else error no subscription
+az login
+az login --scope https://management.core.windows.net//.default
+
 az group create --name myResourceGroup --location eastus
 
 REM / in bash and ^ in bat
