@@ -14,6 +14,9 @@ REM / in bash and ^ in bat
 REM list all sizes to be used 
 REM az vm list-sizes --location eastus | grep Standard_DS1
 
+# Win2022AzureEditionCore and Win2019Datacenter 
+# az vm image list -l westus -p MicrosoftWindowsServer
+
 az vm create ^
     --resource-group myResourceGroup ^
     --name myVM ^
