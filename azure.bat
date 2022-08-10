@@ -74,7 +74,7 @@ cmdkey /generic:"server-address" /user:"azureuser" /pass:"azurep@ssw0rd1"
 mstsc /v:server-address
 cmdkey /delete:server-address
 
-
+# https://docs.microsoft.com/en-us/azure/virtual-machines/windows/run-command
 # script.ps1
 #   param(
 #       [string]$arg1,
@@ -86,3 +86,4 @@ az vm run-command invoke  --command-id RunPowerShellScript --name win-vm -g my-r
     --scripts @script.ps1 --parameters "arg1=somefoo" "arg2=somebar"
 	
 # https://stackoverflow.com/questions/27713381/powershell-script-to-create-website-in-iis
+
