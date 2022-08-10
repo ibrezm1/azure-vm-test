@@ -47,3 +47,42 @@ REM     --force-deletion
 
 REM Next steps Terraform for azure
 REM https://docs.microsoft.com/en-us/azure/developer/terraform/overview
+
+REM from Azure Cloud shell 
+REM ################################################################################
+
+az group create --name myResourceGroup --location eastus
+
+az vm create \
+    --resource-group myResourceGroup \
+    --name myVM \
+    --size Standard_DS1_v2 \
+    --image Win2019Datacenter \
+    --public-ip-sku Standard \
+    --nic-delete-option delete \
+    --os-disk-delete-option delete \
+    --admin-username azureuser \
+    --admin-password azurep@ssw0rd1
+	
+az vm run-command invoke -g MyResourceGroup -n MyVm \
+    --command-id RunPowerShellScript \
+    --scripts "Install-WindowsFeature -name Web-Server -IncludeManagementTools"
+	
+
+# Autmatic rdp login command 	
+cmdkey /generic:"server-address" /user:"azureuser" /pass:"azurep@ssw0rd1"
+mstsc /v:server-address
+cmdkey /delete:server-address
+
+
+# script.ps1
+#   param(
+#       [string]$arg1,
+#       [string]$arg2
+#   )
+#   Write-Host This is a sample script with parameters $arg1 and $arg2
+
+az vm run-command invoke  --command-id RunPowerShellScript --name win-vm -g my-resource-group \
+    --scripts @script.ps1 --parameters "arg1=somefoo" "arg2=somebar"
+	
+# https://stackoverflow.com/questions/27713381/powershell-script-to-create-website-in-iis
